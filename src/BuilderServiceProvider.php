@@ -6,8 +6,9 @@ use Focite\Builder\Console\Commands\GenEntity;
 use Focite\Builder\Console\Commands\GenModel;
 use Focite\Builder\Console\Commands\GenRepository;
 use Focite\Builder\Console\Commands\GenService;
+use Illuminate\Support\ServiceProvider;
 
-class ServiceProvider
+class BuilderServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any package services.
@@ -16,7 +17,7 @@ class ServiceProvider
      */
     public function register()
     {
-       
+
     }
 
     /**
@@ -27,12 +28,12 @@ class ServiceProvider
     public function boot()
     {
         if ($this->app->runningInConsole()) {
-			$this->commands([
-				GenEntity::class,
-				GenModel::class,
-				GenRepository::class,
-				GenService::class,
-			]);
-		}
+            $this->commands([
+                GenEntity::class,
+                GenModel::class,
+                GenRepository::class,
+                GenService::class,
+            ]);
+        }
     }
 }
