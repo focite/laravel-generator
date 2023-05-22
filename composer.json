@@ -11,5 +11,12 @@
         "files": [
         	"src/Support/helpers.php"
         ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Focite\\Builder\\ServiceProvider"
+            ]
+        }
     }
 }
