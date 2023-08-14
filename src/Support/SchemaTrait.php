@@ -27,6 +27,7 @@ trait SchemaTrait
             $row = collect($row)->toArray();
             $row['Comment'] = $comments[$row['Field']];
             $row['BaseType'] = $this->getFieldType($row['Type']);
+            $row['SwaggerType'] = $row['BaseType'] === 'int' ? 'integer' : $row['BaseType'];
             $columns[] = $row;
         }
 

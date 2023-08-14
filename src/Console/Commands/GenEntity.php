@@ -66,7 +66,7 @@ class GenEntity extends Command
             if ($column['Field'] == 'default') {
                 $column['Field'] = 'isDefault';
             }
-            $fields .= "    #[OA\\Property(property: '{$column['Field']}', description: '{$column['Comment']}', type: '{$column['BaseType']}')]\n";
+            $fields .= "    #[OA\\Property(property: '{$column['Field']}', description: '{$column['Comment']}', type: '{$column['SwaggerType']}')]\n";
             $fields .= '    protected '.$column['BaseType'].' $'.Str::camel($column['Field']).";\n\n";
         }
 
