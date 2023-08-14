@@ -5,11 +5,6 @@
         "php": "^8.1",
         "workerman/crontab": "^1.0"
     },
-    "require-dev": {
-        "laravel/pint": "^1.10",
-        "phpstan/phpstan": "^1.10",
-        "zircote/swagger-php": "^4.7"
-    },
     "autoload": {
         "psr-4": {
             "Laractl\\": "src/"
