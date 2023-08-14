@@ -24,7 +24,7 @@ interface CurdRepositoryInterface
     /**
      * 根据条件检索实体
      */
-    public function findByWhere(array $condition): array;
+    public function findByWhere(array $condition, string $order, string $sort): array;
 
     /**
      * 查询某个字段的值
@@ -74,7 +74,7 @@ interface CurdRepositoryInterface
     /**
      * 分页查询
      */
-    public function page(array $condition, int $page, int $perPage): array;
+    public function page(array $condition, int $page, int $perPage, string $order, string $sort): array;
 
     /**
      * 按ID更新数据

@@ -73,6 +73,23 @@ class Category
     }
 
     /**
+     * 获取树形分类2
+     */
+    private function getTree2(array $data, int $parentId = 0): array
+    {
+        $tree = [];
+
+        foreach ($data as $node) {
+            if ($node[$this->field['pid']] == $parentId) {
+                $node['child'] = $this->getTree2($data, $node[$this->field['id']]);
+                $tree[] = $node;
+            }
+        }
+
+        return $tree;
+    }
+
+    /**
      * 获取分类路径
      */
     public function getPath(array $data, int $id): array

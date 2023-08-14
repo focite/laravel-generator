@@ -14,11 +14,19 @@ use App\Exceptions\CustomException;
 abstract class CommonService implements CommonServiceInterface
 {
     /**
+     * 插入记录并返回 ID 值
+     */
+    public function insertGetId(array $entity): int
+    {
+        return $this->getRepository()->save($entity);
+    }
+
+    /**
      * 插入一条记录
      */
     public function save(array $entity): bool
     {
-        $insertId = $this->getRepository()->save($entity);
+        $insertId = $this->insertGetId($entity);
 
         return $insertId > 0;
     }
@@ -121,23 +129,23 @@ abstract class CommonService implements CommonServiceInterface
     /**
      * 查询（根据ID 批量查询）
      */
-    public function listByIds(array $ids): array
+    public function listByIds(array $ids, string $order = 'id', string $sort = 'desc'): array
     {
-        return $this->getRepository()->findAllById($ids);
+        return $this->getRepository()->findAllById($ids, $order, $sort);
     }
 
     /**
      * 根据条件，查询一条记录
      */
-    public function getOne(array $condition): array
+    public function getOne(array $condition, string $order = 'id', string $sort = 'desc'): array
     {
-        return $this->getRepository()->findByWhere($condition);
+        return $this->getRepository()->findByWhere($condition, $order, $sort);
     }
 
     /**
      * 查询某个字段的值
      */
-    public function value(string $field, array $condition): mixed
+    public function value(string $field, array $condition = []): mixed
     {
         return $this->getRepository()->value($field, $condition);
     }
@@ -145,7 +153,7 @@ abstract class CommonService implements CommonServiceInterface
     /**
      * 查询某一列的值
      */
-    public function pluck(string $field, array $condition): array
+    public function pluck(string $field, array $condition = []): array
     {
         return $this->getRepository()->pluck($field, $condition);
     }
@@ -153,7 +161,7 @@ abstract class CommonService implements CommonServiceInterface
     /**
      * 根据条件，查询总记录数
      */
-    public function count(array $condition): int
+    public function count(array $condition = []): int
     {
         return $this->getRepository()->count($condition);
     }
@@ -161,16 +169,16 @@ abstract class CommonService implements CommonServiceInterface
     /**
      * 查询列表
      */
-    public function getList(array $condition): array
+    public function getList(array $condition = [], string $order = 'id', string $sort = 'desc'): array
     {
-        return $this->getRepository()->findAll($condition);
+        return $this->getRepository()->findAll($condition, $order, $sort);
     }
 
     /**
      * 分页查询列表
      */
-    public function page(array $condition, int $page, int $perPage = 20): array
+    public function page(array $condition = [], int $page = 1, int $perPage = 20, string $order = 'id', string $sort = 'desc'): array
     {
-        return $this->getRepository()->page($condition, $page, $perPage);
+        return $this->getRepository()->page($condition, $page, $perPage, $order, $sort);
     }
 }

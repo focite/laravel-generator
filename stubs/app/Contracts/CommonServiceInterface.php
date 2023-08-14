@@ -9,6 +9,11 @@ interface CommonServiceInterface
     const DEFAULT_BATCH_SIZE = 1000;
 
     /**
+     * 插入记录并返回 ID 值
+     */
+    public function insertGetId(array $entity): int;
+
+    /**
      * 插入一条记录
      */
     public function save(array $entity): bool;
@@ -61,12 +66,12 @@ interface CommonServiceInterface
     /**
      * 查询（根据ID 批量查询）
      */
-    public function listByIds(array $ids): array;
+    public function listByIds(array $ids, string $order, string $sort): array;
 
     /**
      * 根据条件，查询一条记录
      */
-    public function getOne(array $condition): array;
+    public function getOne(array $condition, string $order, string $sort): array;
 
     /**
      * 查询某个字段的值
@@ -86,10 +91,10 @@ interface CommonServiceInterface
     /**
      * 查询列表
      */
-    public function getList(array $condition): array;
+    public function getList(array $condition, string $order, string $sort): array;
 
     /**
      * 分页查询列表
      */
-    public function page(array $condition, int $page, int $perPage = 20): array;
+    public function page(array $condition, int $page, int $perPage = 20, string $order, string $sort): array;
 }

@@ -44,9 +44,9 @@ abstract class CurdRepository implements CurdRepositoryInterface
     /**
      * 根据条件检索实体
      */
-    public function findByWhere(array $condition): array
+    public function findByWhere(array $condition, string $order = 'id', string $sort = 'desc'): array
     {
-        $result = $this->model()->query()->where($condition)->first();
+        $result = $this->model()->query()->where($condition)->orderBy($order, $sort)->first();
         if (is_null($result)) {
             return [];
         }
@@ -83,7 +83,7 @@ abstract class CurdRepository implements CurdRepositoryInterface
     /**
      * 返回该类型的所有实例
      */
-    public function findAll(array $condition, string $order = 'id', string $sort = 'asc'): array
+    public function findAll(array $condition, string $order = 'id', string $sort = 'desc'): array
     {
         $result = $this->model()->query()->where($condition)->orderBy($order, $sort)->get();
         if ($result->isEmpty()) {
@@ -96,7 +96,7 @@ abstract class CurdRepository implements CurdRepositoryInterface
     /**
      * 返回具有给定id类型的所有实例
      */
-    public function findAllById(array $ids, string $order = 'id', string $sort = 'asc'): array
+    public function findAllById(array $ids, string $order = 'id', string $sort = 'desc'): array
     {
         $result = $this->model()->query()->whereIn('id', $ids)->orderBy($order, $sort)->get();
         if ($result->isEmpty()) {
@@ -149,9 +149,9 @@ abstract class CurdRepository implements CurdRepositoryInterface
     /**
      * 分页查询
      */
-    public function page(array $condition, int $page = 1, int $perPage = 20): array
+    public function page(array $condition, int $page = 1, int $perPage = 20, string $order = 'id', string $sort = 'desc'): array
     {
-        $result = $this->model()->query()->where($condition)->paginate($perPage, ['*'], 'page', $page);
+        $result = $this->model()->query()->where($condition)->orderBy($order, $sort)->paginate($perPage, ['*'], 'page', $page);
         if ($result->isEmpty()) {
             return [];
         }
