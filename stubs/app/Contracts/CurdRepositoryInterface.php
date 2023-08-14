@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Focite\Builder\Contracts;
+namespace App\Contracts;
 
 interface CurdRepositoryInterface
 {

@@ -1,14 +1,15 @@
 <?php
 
-namespace Focite\Builder;
+namespace Laractl;
 
-use Focite\Builder\Console\Commands\GenEntity;
-use Focite\Builder\Console\Commands\GenModel;
-use Focite\Builder\Console\Commands\GenRepository;
-use Focite\Builder\Console\Commands\GenService;
+use Laractl\Console\Commands\GenEntity;
+use Laractl\Console\Commands\GenModel;
+use Laractl\Console\Commands\GenRepository;
+use Laractl\Console\Commands\GenService;
+use Laractl\Console\Commands\InstallCommand;
 use Illuminate\Support\ServiceProvider;
 
-class BuilderServiceProvider extends ServiceProvider
+class LaraCtlServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any package services.
@@ -29,6 +30,7 @@ class BuilderServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
+                InstallCommand::class,
                 GenEntity::class,
                 GenModel::class,
                 GenRepository::class,

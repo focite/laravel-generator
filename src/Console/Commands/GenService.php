@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Focite\Builder\Console\Commands;
+namespace Laractl\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -29,6 +29,7 @@ class GenService extends Command
      */
     private array $ignoreTable = [
         'failed_jobs',
+        'jobs',
         'migrations',
         'password_reset_tokens',
         'personal_access_tokens',

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Contracts\ServiceInterface;
 use App\Repositories\{$name}Repository;
+use App\Services\CommonService;
 use App\Services\Input\{$name}Input;
 use App\Services\Output\{$name}Output;
-use Focite\Builder\Contracts\ServiceInterface;
-use Focite\Builder\Services\CommonService;
 
 class {$name}Service extends CommonService implements ServiceInterface
 {

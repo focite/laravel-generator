@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Focite\Builder\Exceptions;
+namespace App\Exceptions;
 
 use Exception;
 

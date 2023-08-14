@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Focite\Builder\Contracts;
+namespace App\Contracts;
 
 use Illuminate\Database\Eloquent\Model;
 

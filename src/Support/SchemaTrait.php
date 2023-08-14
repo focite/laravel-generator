@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Focite\Builder\Support;
+namespace Laractl\Support;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;

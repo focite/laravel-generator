@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Focite\Builder\Console\Commands;
+namespace Laractl\Console\Commands;
 
-use Focite\Builder\Support\SchemaTrait;
+use Laractl\Support\SchemaTrait;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -32,6 +32,7 @@ class GenEntity extends Command
      */
     private array $ignoreTable = [
         'failed_jobs',
+        'jobs',
         'migrations',
         'password_reset_tokens',
         'personal_access_tokens',

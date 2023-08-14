@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Focite\Builder\Support;
+namespace App\Support;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
