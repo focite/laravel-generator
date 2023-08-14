@@ -26,8 +26,12 @@ class GenDict extends Command
      */
     protected $description = 'Generate database dict';
 
-    private array $ignoreTables = [
-
+    private array $ignoreTable = [
+        'failed_jobs',
+        'jobs',
+        'migrations',
+        'password_reset_tokens',
+        'personal_access_tokens',
     ];
 
     /**
@@ -36,19 +40,19 @@ class GenDict extends Command
     public function handle()
     {
         $database = env('DB_DATABASE');
-        $tables = DB::query('show tables;');
+        $tables = DB::select('show tables;');
+        $tables = array_column($tables, 'Tables_in_'.$database);
 
         $content = "# 数据字典\n\n";
-        foreach ($tables as $row) {
-            $tableName = implode('', $row);
-            if (in_array($tableName, $this->ignoreTables)) {
+        foreach ($tables as $table) {
+            if (in_array($table, $this->ignoreTable)) {
                 continue;
             }
 
-            $tableInfo = DB::query("SELECT `TABLE_COMMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$database' AND TABLE_NAME = '$tableName';");
-            $content .= "### {$tableInfo[0]['TABLE_COMMENT']}(`$tableName`)\n";
+            $tableInfo = DB::select("SELECT `TABLE_COMMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$database' AND TABLE_NAME = '$table';");
+            $content .= "### {$tableInfo[0]->TABLE_COMMENT}(`$table`)\n";
 
-            $columns = $this->getTableInfo($database, $tableName);
+            $columns = $this->getTableColumns($database, $table);
             $content .= $this->getContent($columns);
         }
 
