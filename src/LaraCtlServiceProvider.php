@@ -2,7 +2,9 @@
 
 namespace Laractl;
 
+use Laractl\Console\Commands\GenDict;
 use Laractl\Console\Commands\GenEntity;
+use Laractl\Console\Commands\GenInterface;
 use Laractl\Console\Commands\GenModel;
 use Laractl\Console\Commands\GenRepository;
 use Laractl\Console\Commands\GenService;
@@ -31,7 +33,9 @@ class LaraCtlServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 InstallCommand::class,
+                GenDict::class,
                 GenEntity::class,
+                GenInterface::class,
                 GenModel::class,
                 GenRepository::class,
                 GenService::class,
