@@ -1,5 +1,5 @@
 {
-    "name": "laractl/laractl",
+    "name": "focite/laravel-generator",
     "license": "Apache-2.0",
     "require": {
         "php": "^8.1",
@@ -7,7 +7,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Laractl\\": "src/"
+            "Focite\\": "src/"
         },
         "files": [
         	"src/Support/helpers.php"
@@ -16,7 +16,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Laractl\\LaraCtlServiceProvider"
+                "Focite\\LaraCtlServiceProvider"
             ]
         }
     }

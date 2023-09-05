@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Laractl\Console\Commands;
+namespace Focite\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;

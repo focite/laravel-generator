@@ -1,14 +1,14 @@
 <?php
 
-namespace Laractl;
+namespace Focite;
 
-use Laractl\Console\Commands\GenDict;
-use Laractl\Console\Commands\GenEntity;
-use Laractl\Console\Commands\GenInterface;
-use Laractl\Console\Commands\GenModel;
-use Laractl\Console\Commands\GenRepository;
-use Laractl\Console\Commands\GenService;
-use Laractl\Console\Commands\InstallCommand;
+use Focite\Console\Commands\GenDict;
+use Focite\Console\Commands\GenEntity;
+use Focite\Console\Commands\GenInterface;
+use Focite\Console\Commands\GenModel;
+use Focite\Console\Commands\GenRepository;
+use Focite\Console\Commands\GenService;
+use Focite\Console\Commands\InstallCommand;
 use Illuminate\Support\ServiceProvider;
 
 class LaraCtlServiceProvider extends ServiceProvider

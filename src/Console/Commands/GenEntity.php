@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Laractl\Console\Commands;
+namespace Focite\Console\Commands;
 
-use Laractl\Support\SchemaTrait;
+use Focite\Support\SchemaTrait;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
