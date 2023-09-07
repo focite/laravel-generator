@@ -14,7 +14,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'laractl:install';
+    protected $signature = 'gen:install';
 
     /**
      * The console command description.

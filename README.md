@@ -1,13 +1,13 @@
-# Focite
+# Focite-Generator
 
-Focite 是一款开发辅助工具，帮助开发者实现功能的 CRUD 操作，快速实现业务落地。
+Focite Generator 是一款开发辅助工具，帮助开发者实现功能的 CRUD 操作，快速实现业务落地。
 
 ## 安装
 
-安装 laractl 工具 的 composer 包
+安装 laravel-generator 工具 的 composer 包
 
 ```
-composer require laractl/laractl
+composer require focite/laravel-generator
 ```
 
 ## 使用
@@ -15,7 +15,7 @@ composer require laractl/laractl
 初始化
 
 ```
-php artisan laractl:install
+php artisan gen:install
 ```
 
 生成数据表实体类
