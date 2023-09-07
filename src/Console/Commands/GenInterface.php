@@ -27,28 +27,139 @@ class GenInterface extends Command
      */
     public function handle()
     {
-        $files = glob(base_path('resources/types/*.json'));
+        $files = glob(public_path('swagger/*.json'));
         foreach ($files as $file) {
-            $moduleName = basename($file, '.json');
-
-            $content = '';
+            $module = basename($file, '.json');
             $data = json_decode(file_get_contents($file), true);
-            if (isset($data['components']['schemas'])) {
-                foreach ($data['components']['schemas'] as $type => $schema) {
-                    if (! isset($schema['properties'])) {
-                        exit($moduleName.' '.$type.' 缺少 properties 参数');
-                    }
-                    $content .= $this->genCode($type, $schema);
-                }
-            }
-
-            file_put_contents(base_path('resources/types/'.$moduleName.'.ts'), $content);
-
-            unlink($file);
+            $serviceContent = $this->genServices($data, $module);
+            file_put_contents(resource_path('js/services/'.$module.'.ts'), $serviceContent);
+            $typeContent = $this->genTypes($data, $module);
+            file_put_contents(resource_path('js/types/'.$module.'.ts'), $typeContent);
         }
     }
 
-    private function genCode(string $interface, array $schema): string
+    public function genServices(array $data, string $module): string
+    {
+        $content = "import request from '@/utils/request'\n";
+        if (isset($data['paths'])) {
+            $apis = []; // API接口
+            $types = []; // 参数类型
+            foreach ($data['paths'] as $path => $item) {
+                if (Config::get('route.context_path')) {
+                    $path = str_replace(Config::get('route.context_path'), '/', $path);
+                }
+
+                $requestParams = '';
+                $requestBody = '';
+
+                foreach ($item as $method => $val) {
+                    // query 参数
+                    if (isset($val['parameters'])) {
+                        $parameters = [];
+                        foreach ($val['parameters'] as $v) {
+                            $vType = 'string';
+                            if (isset($v['example']) && is_int($v['example'])) {
+                                $vType = 'number';
+                            }
+                            $parameters[$v['name']] = $vType;
+                        }
+
+                        $params = [];
+                        foreach ($parameters as $k => $t) {
+                            $params[] = $k.': '.$t;
+                        }
+
+                        $requestParams = implode(', ', $params);
+                        $requestBody = ",\n        params: {".implode(', ', array_keys($parameters)).'}';
+                    }
+
+                    // formData 参数
+                    if (isset($val['requestBody']['content']['application/json']['schema']['$ref'])) {
+                        $request = $val['requestBody']['content']['application/json']['schema']['$ref'];
+                        preg_match('/\/components\/schemas\/(\w+)/', $request, $m);
+                        if (isset($m[1])) {
+                            $interface = 'I'.$m[1];
+                            $types[] = $interface;
+
+                            if (empty($requestParams)) {
+                                $requestParams .= 'formData: '.$interface;
+                            } else {
+                                $requestParams .= ', formData: '.$interface;
+                            }
+
+                            $requestBody .= ",\n        data: formData";
+                        }
+                    }
+
+                    // 文件上传
+                    if (isset($val['requestBody']['content']['multipart/form-data']['schema']['$ref'])) {
+                        $request = $val['requestBody']['content']['multipart/form-data']['schema']['$ref'];
+                        preg_match('/\/components\/schemas\/(\w+)/', $request, $m);
+                        if (isset($m[1])) {
+                            $interface = 'I'.$m[1];
+                            $types[] = $interface;
+
+                            if (empty($requestParams)) {
+                                $requestParams .= 'formData: '.$interface;
+                            } else {
+                                $requestParams .= ', formData: '.$interface;
+                            }
+
+                            $requestBody .= ",\n        data: formData";
+                            $requestBody .= ",\n        headers: { 'Content-Type': 'multipart/form-data' }";
+                        }
+                    }
+
+                    $response = '<any>';
+                    if (isset($val['responses'][200]['content']['application/json']['schema']['$ref'])) {
+                        $response = $val['responses'][200]['content']['application/json']['schema']['$ref'];
+                        preg_match('/\/components\/schemas\/(\w+)/', $response, $m);
+                        if (isset($m[1])) {
+                            $interface = 'I'.$m[1];
+                            $types[] = $interface;
+                            $response = '<'.$interface.'>';
+                        }
+                    }
+
+                    $service = Str::camel(Str::replace('/', ' ', $path));
+
+                    $apis[] = "// [{$val['tags'][0]}] {$val['summary']}
+export const {$service}Service = ({$requestParams}): Promise{$response} => {
+    return request({
+        url: '{$path}',
+        method: '{$method}'{$requestBody}
+    })
+}\n";
+                }
+            }
+
+            $content .= 'import type { '.implode(",\n", array_unique($types))." } from '@/types/{$module}'\n\n";
+
+            $content .= implode("\n", $apis);
+        }
+
+        return $content;
+    }
+
+    private function genTypes(array $data, string $module): string
+    {
+        $content = '';
+        if (isset($data['components']['schemas'])) {
+            foreach ($data['components']['schemas'] as $type => $schema) {
+                if (Str::contains($type, 'Schema')) {
+                    continue;
+                }
+                if (! isset($schema['properties'])) {
+                    exit($module.' 模块中的 '.$type.' 缺少 properties 参数');
+                }
+                $content .= $this->genTypeSchemas($type, $schema);
+            }
+        }
+
+        return $content;
+    }
+
+    private function genTypeSchemas(string $interface, array $schema): string
     {
         $c = "export interface I$interface {\n";
 

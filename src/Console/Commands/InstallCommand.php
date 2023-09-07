@@ -34,9 +34,6 @@ class InstallCommand extends Command
         $fs->ensureDirectoryExists(app_path('Exceptions'));
         $fs->copyDirectory($root.'/stubs/app/Exceptions', app_path('Exceptions'));
 
-        $fs->ensureDirectoryExists(app_path('Http/Controllers'));
-        $fs->copyDirectory($root.'/stubs/app/Http/Controllers', app_path('Http/Controllers'));
-
         $fs->ensureDirectoryExists(app_path('Repositories'));
         $fs->copyDirectory($root.'/stubs/app/Repositories', app_path('Repositories'));
 

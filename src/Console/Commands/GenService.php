@@ -51,8 +51,8 @@ class GenService extends Command
 
             $className = Str::studly(Str::singular($table));
 
-            $this->inputTpl($className);
-            $this->outputTpl($className);
+            // $this->inputTpl($className);
+            // $this->outputTpl($className);
             $this->serviceTpl($className);
         }
     }
