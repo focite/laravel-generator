@@ -7,7 +7,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Focite\\": "src/"
+            "Focite\\Generator\\": "src/"
         },
         "files": [
         	"src/Support/helpers.php"
@@ -16,7 +16,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Focite\\LaraCtlServiceProvider"
+                "Focite\\Generator\\GeneratorServiceProvider"
             ]
         }
     }

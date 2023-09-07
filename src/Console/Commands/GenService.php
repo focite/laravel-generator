@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Focite\Console\Commands;
+namespace Focite\Generator\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;

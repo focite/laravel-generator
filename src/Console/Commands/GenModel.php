@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Focite\Console\Commands;
+namespace Focite\Generator\Console\Commands;
 
-use Focite\Support\SchemaTrait;
+use Focite\Generator\Support\SchemaTrait;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;

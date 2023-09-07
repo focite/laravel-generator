@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Focite\Support;
+namespace Focite\Generator\Support;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;

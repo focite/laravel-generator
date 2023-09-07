@@ -1,17 +1,17 @@
 <?php
 
-namespace Focite;
+namespace Focite\Generator;
 
-use Focite\Console\Commands\GenDict;
-use Focite\Console\Commands\GenEntity;
-use Focite\Console\Commands\GenInterface;
-use Focite\Console\Commands\GenModel;
-use Focite\Console\Commands\GenRepository;
-use Focite\Console\Commands\GenService;
-use Focite\Console\Commands\InstallCommand;
+use Focite\Generator\Console\Commands\GenDict;
+use Focite\Generator\Console\Commands\GenEntity;
+use Focite\Generator\Console\Commands\GenInterface;
+use Focite\Generator\Console\Commands\GenModel;
+use Focite\Generator\Console\Commands\GenRepository;
+use Focite\Generator\Console\Commands\GenService;
+use Focite\Generator\Console\Commands\InstallCommand;
 use Illuminate\Support\ServiceProvider;
 
-class LaraCtlServiceProvider extends ServiceProvider
+class GeneratorServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any package services.
