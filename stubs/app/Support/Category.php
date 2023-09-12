@@ -31,10 +31,10 @@ class Category
      */
     public function __construct(array $field = [])
     {
-        $this->field['id'] = $field['0'] ?? 'id';
-        $this->field['pid'] = $field['1'] ?? 'pid';
-        $this->field['title'] = $field['2'] ?? 'title';
-        $this->field['full_title'] = $field['3'] ?? 'full_title';
+        $this->field['id'] = $field['id'] ?? 'id';
+        $this->field['pid'] = $field['pid'] ?? 'pid';
+        $this->field['title'] = $field['title'] ?? 'title';
+        $this->field['full_title'] = $field['full_title'] ?? 'full_title';
     }
 
     /**
@@ -75,7 +75,7 @@ class Category
     /**
      * 获取树形分类2
      */
-    private function getTree2(array $data, int $parentId = 0): array
+    public function getTree2(array $data, int $parentId = 0): array
     {
         $tree = [];
 

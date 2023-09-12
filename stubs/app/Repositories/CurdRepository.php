@@ -44,7 +44,7 @@ abstract class CurdRepository implements CurdRepositoryInterface
     /**
      * 根据条件检索实体
      */
-    public function findByWhere(array $condition, string $order = 'id', string $sort = 'desc'): array
+    public function findByWhere(array $condition = [], string $order = 'id', string $sort = 'desc'): array
     {
         $result = $this->model()->query()->where($condition)->orderBy($order, $sort)->first();
         if (is_null($result)) {
@@ -57,7 +57,7 @@ abstract class CurdRepository implements CurdRepositoryInterface
     /**
      * 查询某个字段的值
      */
-    public function value(string $field, array $condition): mixed
+    public function value(string $field, array $condition = []): mixed
     {
         return $this->model()->query()->where($condition)->value($field);
     }
@@ -65,7 +65,7 @@ abstract class CurdRepository implements CurdRepositoryInterface
     /**
      * 获取某一列的值
      */
-    public function pluck(string $field, array $condition): array
+    public function pluck(string $field, array $condition = []): array
     {
         $result = $this->model()->query()->where($condition)->pluck($field);
 
@@ -83,7 +83,7 @@ abstract class CurdRepository implements CurdRepositoryInterface
     /**
      * 返回该类型的所有实例
      */
-    public function findAll(array $condition, string $order = 'id', string $sort = 'desc'): array
+    public function findAll(array $condition = [], string $order = 'id', string $sort = 'desc'): array
     {
         $result = $this->model()->query()->where($condition)->orderBy($order, $sort)->get();
         if ($result->isEmpty()) {
@@ -109,7 +109,7 @@ abstract class CurdRepository implements CurdRepositoryInterface
     /**
      * 返回可用实体的数量
      */
-    public function count(array $condition): int
+    public function count(array $condition = []): int
     {
         return $this->model()->query()->where($condition)->count();
     }
@@ -125,7 +125,7 @@ abstract class CurdRepository implements CurdRepositoryInterface
     /**
      * 删除给定条件的实体
      */
-    public function delete(array $condition): bool
+    public function delete(array $condition = []): bool
     {
         if (empty($condition)) {
             return false;
@@ -149,7 +149,7 @@ abstract class CurdRepository implements CurdRepositoryInterface
     /**
      * 分页查询
      */
-    public function page(array $condition, int $page = 1, int $perPage = 20, string $order = 'id', string $sort = 'desc'): array
+    public function page(array $condition = [], int $page = 1, int $perPage = 20, string $order = 'id', string $sort = 'desc'): array
     {
         $result = $this->model()->query()->where($condition)->orderBy($order, $sort)->paginate($perPage, ['*'], 'page', $page);
         if ($result->isEmpty()) {
