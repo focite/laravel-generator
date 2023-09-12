@@ -27,7 +27,7 @@ class {$name}Repository extends CurdRepository implements RepositoryInterface
     /**
      * 添加
      */
-    public function save({$name} $entity): int
+    public function saveEntity({$name} $entity): int
     {
         return $this->save($entity->toArray());
     }
@@ -67,7 +67,7 @@ class {$name}Repository extends CurdRepository implements RepositoryInterface
     /**
      * 查询列表
      */
-    public function findAll(array $condition = [], string $order = 'id', string $sort = 'asc'): array
+    public function findAllReturn{$name}(array $condition = [], string $order = 'id', string $sort = 'asc'): array
     {
         $result = $this->findAll($condition, $order, $sort);
         if (empty($result)) {
@@ -86,7 +86,7 @@ class {$name}Repository extends CurdRepository implements RepositoryInterface
     /**
      * 分页查询
      */
-    public function page(array $condition = [], int $page = 1, int $pageSize = 20): array
+    public function pageReturn{$name}(array $condition = [], int $page = 1, int $pageSize = 20): array
     {
         $result = $this->page($condition, $page, $pageSize);
 
