@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Focite\Generator\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class GenInterface extends Command
 {
