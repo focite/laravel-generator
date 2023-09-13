@@ -44,7 +44,7 @@ abstract class CurdRepository implements CurdRepositoryInterface
     /**
      * 根据条件检索实体
      */
-    public function findByWhere(array $condition = [], string $order = 'id', string $sort = 'desc'): array
+    public function find(array $condition = [], string $order = 'id', string $sort = 'desc'): array
     {
         $result = $this->model()->query()->where($condition)->orderBy($order, $sort)->first();
         if (is_null($result)) {
@@ -96,7 +96,7 @@ abstract class CurdRepository implements CurdRepositoryInterface
     /**
      * 返回具有给定id类型的所有实例
      */
-    public function findAllById(array $ids, string $order = 'id', string $sort = 'desc'): array
+    public function findAllByIds(array $ids, string $order = 'id', string $sort = 'desc'): array
     {
         $result = $this->model()->query()->whereIn('id', $ids)->orderBy($order, $sort)->get();
         if ($result->isEmpty()) {
@@ -137,7 +137,7 @@ abstract class CurdRepository implements CurdRepositoryInterface
     /**
      * 删除具有给定id类型的所有实例
      */
-    public function deleteAllById(array $ids): bool
+    public function deleteAllByIds(array $ids): bool
     {
         if (empty($ids)) {
             return false;
@@ -170,7 +170,7 @@ abstract class CurdRepository implements CurdRepositoryInterface
     /**
      * 按条件更新数据
      */
-    public function update(array $data, array $condition): int
+    public function update(array $data, array $condition = []): int
     {
         if (empty($condition)) {
             return 0;

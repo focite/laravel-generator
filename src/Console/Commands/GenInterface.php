@@ -45,10 +45,6 @@ class GenInterface extends Command
             $apis = []; // API接口
             $types = []; // 参数类型
             foreach ($data['paths'] as $path => $item) {
-                if (Config::get('route.context_path')) {
-                    $path = str_replace(Config::get('route.context_path'), '/', $path);
-                }
-
                 $requestParams = '';
                 $requestBody = '';
 

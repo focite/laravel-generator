@@ -67,7 +67,7 @@ abstract class CommonService implements CommonServiceInterface
     /**
      * 根据条件，删除记录
      */
-    public function remove(array $condition): bool
+    public function remove(array $condition = []): bool
     {
         if (empty($condition)) {
             return false;
@@ -97,7 +97,7 @@ abstract class CommonService implements CommonServiceInterface
     /**
      * 根据条件，更新记录
      */
-    public function update(array $entity, array $condition): bool
+    public function update(array $entity, array $condition = []): bool
     {
         if (empty($condition)) {
             return false;
@@ -121,7 +121,7 @@ abstract class CommonService implements CommonServiceInterface
     /**
      * 根据 ID 查询
      */
-    public function getById(int $id): array
+    public function getOneById(int $id): array
     {
         return $this->getRepository()->findById($id);
     }
@@ -129,7 +129,7 @@ abstract class CommonService implements CommonServiceInterface
     /**
      * 查询（根据ID 批量查询）
      */
-    public function listByIds(array $ids, string $order = 'id', string $sort = 'desc'): array
+    public function getListByIds(array $ids, string $order = 'id', string $sort = 'desc'): array
     {
         return $this->getRepository()->findAllById($ids, $order, $sort);
     }
@@ -137,7 +137,7 @@ abstract class CommonService implements CommonServiceInterface
     /**
      * 根据条件，查询一条记录
      */
-    public function getOne(array $condition, string $order = 'id', string $sort = 'desc'): array
+    public function getOne(array $condition = [], string $order = 'id', string $sort = 'desc'): array
     {
         return $this->getRepository()->findByWhere($condition, $order, $sort);
     }

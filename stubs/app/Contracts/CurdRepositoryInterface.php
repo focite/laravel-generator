@@ -24,7 +24,7 @@ interface CurdRepositoryInterface
     /**
      * 根据条件检索实体
      */
-    public function findByWhere(array $condition, string $order, string $sort): array;
+    public function find(array $condition, string $order, string $sort): array;
 
     /**
      * 查询某个字段的值
@@ -49,7 +49,7 @@ interface CurdRepositoryInterface
     /**
      * 返回具有给定id类型的所有实例
      */
-    public function findAllById(array $ids, string $order, string $sort): array;
+    public function findAllByIds(array $ids, string $order, string $sort): array;
 
     /**
      * 返回可用实体的数量
@@ -69,7 +69,7 @@ interface CurdRepositoryInterface
     /**
      * 删除具有给定id类型的所有实例
      */
-    public function deleteAllById(array $ids): bool;
+    public function deleteAllByIds(array $ids): bool;
 
     /**
      * 分页查询
