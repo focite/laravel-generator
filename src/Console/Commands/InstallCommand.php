@@ -28,17 +28,8 @@ class InstallCommand extends Command
         $fs = new Filesystem();
         $root = dirname(__DIR__, 3);
 
-        $fs->ensureDirectoryExists(app_path('Contracts'));
-        $fs->copyDirectory($root.'/stubs/app/Contracts', app_path('Contracts'));
-
         $fs->ensureDirectoryExists(app_path('Exceptions'));
         $fs->copyDirectory($root.'/stubs/app/Exceptions', app_path('Exceptions'));
-
-        $fs->ensureDirectoryExists(app_path('Repositories'));
-        $fs->copyDirectory($root.'/stubs/app/Repositories', app_path('Repositories'));
-
-        $fs->ensureDirectoryExists(app_path('Services'));
-        $fs->copyDirectory($root.'/stubs/app/Services', app_path('Services'));
 
         $fs->ensureDirectoryExists(app_path('Support'));
         $fs->copyDirectory($root.'/stubs/app/Support', app_path('Support'));

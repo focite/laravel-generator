@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Services;
+namespace Focite\Generator\Services;
 
-use App\Contracts\CommonServiceInterface;
-use App\Contracts\CurdRepositoryInterface;
 use App\Exceptions\CustomException;
+use Focite\Generator\Contracts\CommonServiceInterface;
+use Focite\Generator\Contracts\CurdRepositoryInterface;
 
 /**
  * @method CurdRepositoryInterface getRepository()

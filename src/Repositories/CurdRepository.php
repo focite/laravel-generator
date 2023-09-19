@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories;
+namespace Focite\Generator\Repositories;
 
-use App\Contracts\CurdRepositoryInterface;
+use Focite\Generator\Contracts\CurdRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 
 /**
