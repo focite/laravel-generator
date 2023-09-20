@@ -30,8 +30,5 @@ class InstallCommand extends Command
 
         $fs->ensureDirectoryExists(app_path('Exceptions'));
         $fs->copyDirectory($root.'/stubs/app/Exceptions', app_path('Exceptions'));
-
-        $fs->ensureDirectoryExists(app_path('Support'));
-        $fs->copyDirectory($root.'/stubs/app/Support', app_path('Support'));
     }
 }
