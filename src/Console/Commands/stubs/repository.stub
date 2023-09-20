@@ -43,10 +43,10 @@ class {$name}Repository extends CurdRepository implements RepositoryInterface
             return null;
         }
 
-        $output = new {$name}();
-        $output->setData($data);
+        $entity = new {$name}();
+        $entity->setData($data);
 
-        return $output;
+        return $entity;
     }
 
     /**
@@ -59,45 +59,10 @@ class {$name}Repository extends CurdRepository implements RepositoryInterface
             return null;
         }
 
-        $output = new {$name}();
-        $output->setData($data);
+        $entity = new {$name}();
+        $entity->setData($data);
 
-        return $output;
-    }
-
-    /**
-     * 查询列表
-     */
-    public function findAllEntity(array $condition = [], string $order = 'id', string $sort = 'asc'): array
-    {
-        $result = $this->findAll($condition, $order, $sort);
-        if (empty($result)) {
-            return [];
-        }
-
-        foreach ($result as $key => $item) {
-            $output = new {$name}();
-            $output->setData($item);
-            $result[$key] = $output;
-        }
-
-        return $result;
-    }
-
-    /**
-     * 分页查询
-     */
-    public function pageEntity(array $condition = [], int $page = 1, int $pageSize = 20): array
-    {
-        $result = $this->page($condition, $page, $pageSize);
-
-        foreach ($result['data'] as $key => $item) {
-            $output = new {$name}();
-            $output->setData($item);
-            $result['data'][$key] = $output;
-        }
-
-        return $result;
+        return $entity;
     }
 
     /**
