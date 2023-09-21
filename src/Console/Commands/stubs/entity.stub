@@ -7,8 +7,8 @@ namespace App\Models\Entity;
 use Focite\Generator\Support\ArrayObject;
 use OpenApi\Attributes as OA;
 
-#[OA\Schema(schema: '{$name}Schema')]
-class {$name}
+#[OA\Schema(schema: '{$name}Entity')]
+class {$name}Entity
 {
     use ArrayObject;
 {$fields}

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-use App\Models\{$name}Model;
-use App\Models\Entity\{$name};
+use App\Models\{$name};
+use App\Models\Entity\{$name}Entity;
 use Focite\Generator\Contracts\RepositoryInterface;
 use Focite\Generator\Repositories\CurdRepository;
 
@@ -28,7 +28,7 @@ class {$name}Repository extends CurdRepository implements RepositoryInterface
     /**
      * 添加
      */
-    public function saveEntity({$name} $entity): int
+    public function saveEntity({$name}Entity $entity): int
     {
         return $this->save($entity->toArray());
     }
@@ -36,14 +36,14 @@ class {$name}Repository extends CurdRepository implements RepositoryInterface
     /**
      * 按照ID查询返回对象
      */
-    public function findOneById(int $id): ?{$name}
+    public function findOneById(int $id): ?{$name}Entity
     {
         $data = $this->findById($id);
         if (empty($data)) {
             return null;
         }
 
-        $entity = new {$name}();
+        $entity = new {$name}Entity();
         $entity->setData($data);
 
         return $entity;
@@ -52,14 +52,14 @@ class {$name}Repository extends CurdRepository implements RepositoryInterface
     /**
      * 按照条件查询返回对象
      */
-    public function findOne(array $condition = []): ?{$name}
+    public function findOne(array $condition = []): ?{$name}Entity
     {
         $data = $this->find($condition);
         if (empty($data)) {
             return null;
         }
 
-        $entity = new {$name}();
+        $entity = new {$name}Entity();
         $entity->setData($data);
 
         return $entity;
@@ -68,8 +68,8 @@ class {$name}Repository extends CurdRepository implements RepositoryInterface
     /**
      * 定义数据数据模型类
      */
-    public function model(): {$name}Model
+    public function model(): {$name}
     {
-        return new {$name}Model();
+        return new {$name}();
     }
 }
