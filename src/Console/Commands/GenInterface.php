@@ -28,14 +28,14 @@ class GenInterface extends Command
      */
     public function handle()
     {
-        $files = glob(public_path('swagger/*.json'));
+        $files = glob(base_path('docs/api/*.json'));
         foreach ($files as $file) {
             $module = basename($file, '.json');
             $data = json_decode(file_get_contents($file), true);
             $serviceContent = $this->genServices($data, $module);
-            file_put_contents(resource_path('js/services/'.$module.'.ts'), $serviceContent);
+            file_put_contents(resource_path('ts/services/'.$module.'.ts'), $serviceContent);
             $typeContent = $this->genTypes($data, $module);
-            file_put_contents(resource_path('js/types/'.$module.'.ts'), $typeContent);
+            file_put_contents(resource_path('ts/types/'.$module.'.ts'), $typeContent);
         }
     }
 
