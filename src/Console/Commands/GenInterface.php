@@ -33,9 +33,9 @@ class GenInterface extends Command
             $module = basename($file, '.json');
             $data = json_decode(file_get_contents($file), true);
             $serviceContent = $this->genServices($data, $module);
-            file_put_contents(resource_path('ts/services/'.$module.'.ts'), $serviceContent);
+            file_put_contents(storage_path('app/ts/services/'.$module.'.ts'), $serviceContent);
             $typeContent = $this->genTypes($data, $module);
-            file_put_contents(resource_path('ts/types/'.$module.'.ts'), $typeContent);
+            file_put_contents(storage_path('app/ts/types/'.$module.'.ts'), $typeContent);
         }
     }
 
