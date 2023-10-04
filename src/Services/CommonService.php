@@ -81,7 +81,7 @@ abstract class CommonService implements CommonServiceInterface
      */
     public function removeByIds(array $ids): bool
     {
-        return $this->getRepository()->deleteAllById($ids);
+        return $this->getRepository()->deleteAllByIds($ids);
     }
 
     /**
@@ -131,7 +131,7 @@ abstract class CommonService implements CommonServiceInterface
      */
     public function getListByIds(array $ids, string $order = 'id', string $sort = 'desc'): array
     {
-        return $this->getRepository()->findAllById($ids, $order, $sort);
+        return $this->getRepository()->findAllByIds($ids, $order, $sort);
     }
 
     /**
@@ -139,7 +139,7 @@ abstract class CommonService implements CommonServiceInterface
      */
     public function getOne(array $condition = [], string $order = 'id', string $sort = 'desc'): array
     {
-        return $this->getRepository()->findByWhere($condition, $order, $sort);
+        return $this->getRepository()->find($condition, $order, $sort);
     }
 
     /**
